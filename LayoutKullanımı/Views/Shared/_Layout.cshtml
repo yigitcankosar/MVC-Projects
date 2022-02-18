@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    @*headerpartial
+        navigationpartial*@
+    <div>
+        @RenderBody()
+    </div>
+    @*footerpartial*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

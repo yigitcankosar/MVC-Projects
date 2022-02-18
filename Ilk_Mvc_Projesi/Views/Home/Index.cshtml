@@ -1,0 +1,29 @@
+﻿@model List<Urun>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+    var model = UrunManager.GetUrunler();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <ul>
+        @*
+        @foreach (var item in model)
+        {
+            <li>@item.Ad - @item.Fiyat</li>
+
+        }
+        *@
+
+        @foreach (var item in Model)
+        {
+            <li>@item.Ad - @item.Fiyat</li>
+
+        }
+
+    </ul>
+    <a asp-controller="Category" asp-action="Index" > CategoryController</a>
+</div>

@@ -1,0 +1,50 @@
+﻿@model CategoryViewModel
+<div class="text-danger">
+    <div asp-validation-summary="All"></div>
+</div>
+
+<form id="frm-add">
+    <label asp-for="CategoryName"></label>
+    <input asp-for="CategoryName" />
+    <span class="text-danger" asp-validation-for="CategoryName"></span>
+    <br />
+    <label asp-for="Description"></label>
+    <input asp-for="Description" />
+    <span class="text-danger" asp-validation-for="Description"></span><br />
+    <input type="submit" value="Ekle" class="btn btn-warning" />
+</form>
+
+@section Scripts
+{
+    <script>
+        $(function() {
+            $("#frm-add").submit(function(e) {
+                e.preventDefault();
+                var model = {
+                    "categoryName": $("#CategoryName").val(),
+                    "description": $("#Description").val()
+                };
+                //console.log(model);
+                var categoryDetailUrl = '@Url.Action("Detail", "Category")';
+                //console.log(categoryDetailUrl);
+                $.ajax({
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    url: '@Url.Action("AddCategory", "CategoryApi")',
+                    type: "POST",
+                    data: JSON.stringify(model),
+                    dataType: "json",
+                    success: function(response) {
+                        alert(response.message);
+                        window.location.href = `${categoryDetailUrl}/${response.model.categoryId}`;
+                        window.location.href = categoryDetailUrl + '/' + response.model.categoryId;
+                    },
+                    error: function(request, status, error) {
+                        console.log(request.responseText);
+                    }
+                });
+            });
+        })
+    </script>
+}

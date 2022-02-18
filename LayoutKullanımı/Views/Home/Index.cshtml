@@ -1,0 +1,22 @@
+﻿@*
+    view imports
+*@
+
+@model List<Urun>
+@*
+    view start
+*@
+
+
+@foreach (var item in Model)
+{
+    <p>
+        @item.Id - @item.Ad-@($"{item.Fiyat:c2}")
+    </p>
+}
+@section Scripts{
+    <script>
+        App.name = "Kamil ";
+        console.log(App.selamla());
+    </script>
+}
